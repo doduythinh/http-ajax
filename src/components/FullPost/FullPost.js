@@ -11,7 +11,7 @@ class FullPost extends Component {
     componentDidUpdate() {
         if(this.props.id)
         {
-            if( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this. props.id)){
+            if( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id)){
                 axios.get('/posts/'+this.props.id)
                     .then(respone=>{
                         this.setState({loadedPost: respone.data})
