@@ -6,7 +6,8 @@ import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 import './Blog.css';
 import Posts from './Posts/Posts';
-import { Route } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
+
 
 class Blog extends Component {
 
@@ -17,10 +18,20 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li>
-                                <a href="/">Home</a>
+                                <NavLink to="/" exact
+                                activeClassName="my-active"
+                                         activeStyle={{
+                                             color: '#fa923f',
+                                             textDecoration  : 'underline'
+                                         }}
+                                >Home</NavLink>
                             </li>
                             <li>
-                                <a href="/new-post">New Post</a>
+                                <NavLink to={{
+                                    pathname: '/new-post',
+                                    hash: '#submit',
+                                    search: '?quick-submit=true'
+                                }}>New Post</NavLink>
                             </li>
                         </ul>
                     </nav>
@@ -33,9 +44,13 @@ class Blog extends Component {
                 {/*</section>*/}
                 {/*<section>*/}
                 {/*    <NewPost />*/}
-                {/*</section>*/}
-                <Posts />
-                <Route />
+                {/*/!*</section>*!/*/}
+                {/*<Posts />*/}
+                {/*<Route  path="/" eaxact render={() => <h1>Home</h1>}/>*/}
+                {/*<Route  path="/"  render={() => <h1>Home 2</h1>}/>*/}
+                <Route path="/" exact component={Posts}/>
+                <Route path="/new-post"  component={NewPost}/>
+                <Route path="/:id" exact component={FullPost}/>
             </div>
         );
     }
